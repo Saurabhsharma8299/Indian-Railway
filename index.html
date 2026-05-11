@@ -1,0 +1,1164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Indian Railways - India's Lifeline</title>
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
+    <style>
+        body {
+            font-family: "Lato", sans-serif;
+             background-color: #f5f5f5;
+            }
+
+        .hero-section {
+            background: url('https://wallpaperaccess.com/full/6069388.jpg');
+             background-size: cover; 
+             background-position: center;
+              color: white;
+            }
+
+        .railway-blue {
+            background-color: #003366 !important; 
+            color: white !important;
+        }
+
+        .railway-red {
+            background-color: #FF0000 !important;
+             color: white !important;
+            }
+
+        .railway-green {
+            background-color: #008000 !important;
+             color: white !important;
+            }
+
+        .train-icon {
+            color: #FF0000;
+             font-size: 2rem;
+            }
+
+        .card-hover:hover {
+            transform: translateY(-5px); 
+            transition: 0.3s; 
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2) !important;
+        }
+
+        .footer-links a {
+            color: #ccc; 
+            text-decoration: none;
+        }
+
+        .footer-links a:hover {
+            color: white;
+             text-decoration: underline;
+            }
+
+        .ticket-form {
+            background-color: white; 
+            border-radius: 8px; 
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+
+        .train-route {
+            border-left: 4px solid #003366; 
+            padding-left: 15px;
+        }
+
+        .platform-indicator {
+            width: 20px;
+             height: 20px; 
+             border-radius: 50%; 
+             display: inline-block; 
+             margin-right: 10px;
+            }
+
+        .platform-1 {
+            background-color: #FF0000;
+        }
+
+        .platform-2 {
+            background-color: #008000;
+        }
+
+        .platform-3 {
+            background-color: #003366;
+        }
+
+        .platform-4 {
+            background-color: #FFA500;
+        }
+
+        .status-delayed {
+            color: #FF0000; 
+            font-weight: bold;
+        }
+
+        
+        .status-ontime {
+            color: #008000; 
+            font-weight: bold;
+        }
+
+        .status-arrived {
+            color: #003366; 
+            font-weight: bold;
+        }
+
+        .train-card {
+            transition: all 0.3s ease;
+        }
+
+        .train-card:hover {
+            box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+        }
+
+        .station-marker {
+            color: #FF0000; 
+            font-size: 1.5rem;
+        }
+
+        .marquee {
+            background-color: #FF0000; 
+            color: white; 
+            padding: 10px 0;
+        }
+
+        .booking-steps {
+            counter-reset: step;
+        }
+
+        .step {
+            position: relative;
+             padding-left: 50px; 
+             margin-bottom: 30px;
+            }
+
+        .step:before {
+            counter-increment: step; 
+            content: counter(step); 
+            position: absolute; 
+            left: 0; top: 0; 
+            width: 40px; 
+            height: 40px;
+             background-color: #003366;
+              color: white; 
+              border-radius: 50%; 
+              display: flex; 
+              align-items: center; 
+              justify-content: center; 
+              font-weight: bold;
+            }
+
+        .seat-available {
+            background-color: #008000; 
+            color: white; 
+            padding: 3px 8px; 
+            border-radius: 4px;
+        }
+
+        .seat-waiting {
+            background-color: #FFA500; 
+            color: white; 
+            padding: 3px 8px;
+             border-radius: 4px;
+            }
+
+        .seat-booked {
+            background-color: #FF0000; 
+            color: white; 
+            padding: 3px 8px; 
+            border-radius: 4px;
+        }
+
+        .train-animation {
+            animation: moveTrain 20s linear infinite;
+        }
+
+        @keyframes moveTrain {
+            0% {transform: translateX(-100%);}
+            100% {transform: translateX(100%);}
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation -->
+    <div class="w3-top">
+        <div class="w3-bar railway-blue w3-card">
+            <a href="#home" class="w3-bar-item w3-button w3-padding-large w3-hide-small"><i class="fas fa-train"></i> INDIAN RAILWAYS</a>
+            <div class="w3-right w3-hide-small">
+                <a href="#home" class="w3-bar-item w3-button w3-padding-large"><i class="fas fa-home"></i> Home</a>
+                <a href="#book" class="w3-bar-item w3-button w3-padding-large"><i class="fas fa-ticket-alt"></i> Book Tickets</a>
+                <a href="#pnr" class="w3-bar-item w3-button w3-padding-large"><i class="fas fa-search"></i> PNR Status</a>
+                <a href="#trains" class="w3-bar-item w3-button w3-padding-large"><i class="fas fa-subway"></i> Train Schedule</a>
+                <a href="#services" class="w3-bar-item w3-button w3-padding-large"><i class="fas fa-concierge-bell"></i> Services</a>
+                <a href="#about" class="w3-bar-item w3-button w3-padding-large"><i class="fas fa-info-circle"></i> About</a>
+            </div>
+            <a href="javascript:void(0)" class="w3-bar-item w3-button w3-padding-large w3-right w3-hide-large w3-hide-medium" onclick="toggleMobileMenu()">
+                <i class="fas fa-bars"></i>
+            </a>
+        </div>
+    </div>
+
+    <!-- Mobile Navigation -->
+    <div id="mobileNav" class="w3-bar-block railway-blue w3-hide w3-hide-large w3-hide-medium w3-top" style="margin-top:46px">
+        <a href="#home" class="w3-bar-item w3-button w3-padding-large" onclick="toggleMobileMenu()">Home</a>
+        <a href="#book" class="w3-bar-item w3-button w3-padding-large" onclick="toggleMobileMenu()">Book Tickets</a>
+        <a href="#pnr" class="w3-bar-item w3-button w3-padding-large" onclick="toggleMobileMenu()">PNR Status</a>
+        <a href="#trains" class="w3-bar-item w3-button w3-padding-large" onclick="toggleMobileMenu()">Train Schedule</a>
+        <a href="#services" class="w3-bar-item w3-button w3-padding-large" onclick="toggleMobileMenu()">Services</a>
+        <a href="#about" class="w3-bar-item w3-button w3-padding-large" onclick="toggleMobileMenu()">About</a>
+    </div>
+
+    <!-- Header/Hero Section -->
+    <header class="w3-display-container hero-section w3-text-white" id="home" style="min-height: 100vh; padding-top: 100px;">
+        <div class="w3-display-middle w3-center">
+            <h1 class="w3-jumbo w3-hide-small">INDIAN RAILWAYS</h1>
+            <h1 class="w3-xxlarge w3-hide-large w3-hide-medium">INDIAN RAILWAYS</h1>
+            <h3 class="w3-hide-small">India's Lifeline - Connecting the Nation</h3>
+            <p class="w3-large">Serving 1.4 Billion People | 68,000+ KM of Routes | 7,300+ Stations</p>
+            <a href="#book" class="w3-button railway-red w3-padding-large w3-xlarge w3-margin-top w3-hover-opacity">
+                <i class="fas fa-ticket-alt"></i> Book Tickets Now
+            </a>
+        </div>
+        
+        <!-- Live Train Animation -->
+        <div class="w3-display-bottommiddle w3-padding-64 w3-hide-small">
+            <div class="train-animation">
+                <i class="fas fa-train" style="font-size: 3rem; color: white;"></i>
+            </div>
+        </div>
+    </header>
+
+    <!-- Live Status Marquee -->
+    <div class="marquee w3-hide-small">
+        <div class="w3-container">
+            <marquee>
+                <span class="w3-margin-right"><i class="fas fa-info-circle"></i> COVID-19: Masks are recommended while traveling</span> | 
+                <span class="w3-margin-right"><i class="fas fa-bullhorn"></i> New Train Introduced: Vande Bharat Express between Delhi and Varanasi</span> | 
+                <span class="w3-margin-right"><i class="fas fa-exclamation-triangle"></i> Weather Alert: Trains may be delayed in Northern regions due to fog</span> | 
+                <span class="w3-margin-right"><i class="fas fa-ticket-alt"></i> Tatkal booking opens at 10 AM for AC classes and 11 AM for non-AC classes</span>
+            </marquee>
+        </div>
+    </div>
+
+    <!-- Book Tickets Section -->
+    <div class="w3-container w3-padding-64" id="book">
+        <div class="w3-row-padding">
+            <div class="w3-col m8">
+                <div class="w3-card-4 ticket-form w3-padding">
+                    <div class="w3-container railway-blue">
+                        <h2><i class="fas fa-ticket-alt"></i> Book Railway Tickets</h2>
+                    </div>
+                    <form class="w3-container w3-padding-32" id="bookingForm">
+                        <div class="w3-row-padding">
+                            <div class="w3-col m6 s12 w3-margin-bottom">
+                                <label><i class="fas fa-map-marker-alt"></i> From Station</label>
+                                <input class="w3-input w3-border" type="text" placeholder="Enter origin station" id="fromStation" required>
+                            </div>
+                            <div class="w3-col m6 s12 w3-margin-bottom">
+                                <label><i class="fas fa-map-marker-alt"></i> To Station</label>
+                                <input class="w3-input w3-border" type="text" placeholder="Enter destination station" id="toStation" required>
+                            </div>
+                        </div>
+                        
+                        <div class="w3-row-padding">
+                            <div class="w3-col m6 s12 w3-margin-bottom">
+                                <label><i class="far fa-calendar-alt"></i> Journey Date</label>
+                                <input class="w3-input w3-border" type="date" id="journeyDate" required>
+                            </div>
+                            <div class="w3-col m6 s12 w3-margin-bottom">
+                                <label><i class="fas fa-users"></i> Class</label>
+                                <select class="w3-select w3-border" id="travelClass" required>
+                                    <option value="" disabled selected>Select Class</option>
+                                    <option value="1A">First AC (1A)</option>
+                                    <option value="2A">Second AC (2A)</option>
+                                    <option value="3A">Third AC (3A)</option>
+                                    <option value="SL">Sleeper (SL)</option>
+                                    <option value="2S">Second Sitting (2S)</option>
+                                    <option value="CC">AC Chair Car (CC)</option>
+                                </select>
+                            </div>
+                        </div>
+                        
+                        <div class="w3-row-padding">
+                            <div class="w3-col m6 s12 w3-margin-bottom">
+                                <label><i class="fas fa-user"></i> Passengers</label>
+                                <select class="w3-select w3-border" id="passengers" required>
+                                    <option value="1">1 Passenger</option>
+                                    <option value="2">2 Passengers</option>
+                                    <option value="3">3 Passengers</option>
+                                    <option value="4">4 Passengers</option>
+                                    <option value="5">5 Passengers</option>
+                                    <option value="6">6 Passengers</option>
+                                </select>
+                            </div>
+                            <div class="w3-col m6 s12 w3-margin-bottom">
+                                <label><i class="fas fa-ticket-alt"></i> Quota</label>
+                                <select class="w3-select w3-border" id="quota" required>
+                                    <option value="general">General</option>
+                                    <option value="tatkal">Tatkal</option>
+                                    <option value="ladies">Ladies</option>
+                                    <option value="premium">Premium Tatkal</option>
+                                    <option value="senior">Senior Citizen</option>
+                                </select>
+                            </div>
+                        </div>
+                        
+                        <button type="submit" class="w3-button railway-red w3-block w3-padding-large w3-margin-top">
+                            <i class="fas fa-search"></i> Search Trains
+                        </button>
+                    </form>
+                </div>
+                
+                <!-- Booking Steps -->
+                <div class="w3-card w3-margin-top w3-padding booking-steps">
+                    <h3 class="w3-padding"><i class="fas fa-list-ol"></i> Easy 4-Step Booking Process</h3>
+                    <div class="w3-container">
+                        <div class="step">
+                            <h4>Enter Journey Details</h4>
+                            <p>Select your source, destination, date of travel and class</p>
+                        </div>
+                        <div class="step">
+                            <h4>Choose Train & Class</h4>
+                            <p>Select from available trains and preferred accommodation</p>
+                        </div>
+                        <div class="step">
+                            <h4>Enter Passenger Details</h4>
+                            <p>Fill passenger information and berth preferences</p>
+                        </div>
+                        <div class="step">
+                            <h4>Make Payment</h4>
+                            <p>Pay securely using UPI, card, net banking or wallet</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Quick Links Sidebar -->
+            <div class="w3-col m4">
+                <div class="w3-card w3-margin-bottom">
+                    <div class="w3-container railway-blue">
+                        <h4><i class="fas fa-bolt"></i> Quick Links</h4>
+                    </div>
+                    <div class="w3-container w3-padding-16">
+                        <a href="#pnr" class="w3-button w3-block w3-left-align w3-margin-bottom railway-blue">
+                            <i class="fas fa-search"></i> PNR Status Check
+                        </a>
+                        <a href="#trains" class="w3-button w3-block w3-left-align w3-margin-bottom railway-red">
+                            <i class="fas fa-train"></i> Live Train Status
+                        </a>
+                        <a href="#cancellation" class="w3-button w3-block w3-left-align w3-margin-bottom railway-green">
+                            <i class="fas fa-times-circle"></i> Cancel Ticket
+                        </a>
+                        <a href="#chart" class="w3-button w3-block w3-left-align w3-margin-bottom railway-blue">
+                            <i class="fas fa-chart-bar"></i> Seat Availability
+                        </a>
+                        <a href="#schedule" class="w3-button w3-block w3-left-align w3-margin-bottom railway-red">
+                            <i class="far fa-calendar-alt"></i> Train Schedule
+                        </a>
+                        <a href="#fare" class="w3-button w3-block w3-left-align w3-margin-bottom railway-green">
+                            <i class="fas fa-rupee-sign"></i> Fare Enquiry
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Popular Trains -->
+                <div class="w3-card">
+                    <div class="w3-container railway-blue">
+                        <h4><i class="fas fa-fire"></i> Popular Trains</h4>
+                    </div>
+                    <div class="w3-container w3-padding-16">
+                        <ul class="w3-ul">
+                            <li class="w3-padding-small">
+                                <span class="w3-tag railway-red">12309</span> Rajdhani Express (Delhi-Howrah)
+                            </li>
+                            <li class="w3-padding-small">
+                                <span class="w3-tag railway-red">12951</span> Rajdhani Express (Mumbai-Delhi)
+                            </li>
+                            <li class="w3-padding-small">
+                                <span class="w3-tag railway-green">12627</span> Karnataka Express (Delhi-Bangalore)
+                            </li>
+                            <li class="w3-padding-small">
+                                <span class="w3-tag railway-green">12636</span> Grand Trunk Express (Delhi-Chennai)
+                            </li>
+                            <li class="w3-padding-small">
+                                <span class="w3-tag railway-blue">22436</span> Vande Bharat Express (New Delhi-Varanasi)
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- PNR Status Section -->
+    <div class="w3-container w3-padding-64 railway-blue w3-text-white" id="pnr">
+        <div class="w3-row-padding">
+            <div class="w3-col m6">
+                <h2><i class="fas fa-search"></i> Check PNR Status</h2>
+                <p>Enter your 10-digit PNR number to check current status of your booking</p>
+                <div class="w3-card-4 w3-white w3-padding w3-margin-top">
+                    <div class="w3-container w3-padding-16">
+                        <input class="w3-input w3-border w3-margin-bottom" type="text" placeholder="Enter 10-digit PNR Number" id="pnrInput" maxlength="10">
+                        <button class="w3-button railway-red w3-block" onclick="checkPNR()">
+                            <i class="fas fa-search"></i> Check Status
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="w3-col m6">
+                <div class="w3-card-4 w3-white w3-padding w3-text-black">
+                    <div class="w3-container">
+                        <h4 class="railway-blue"><i class="fas fa-info-circle"></i> PNR Status Results</h4>
+                        <div id="pnrResults" class="w3-padding">
+                            <p class="w3-center">Enter PNR number to see status</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Train Schedule & Status -->
+    <div class="w3-container w3-padding-64" id="trains">
+        <h2 class="w3-center"><i class="fas fa-subway"></i> Train Schedule & Live Status</h2>
+        <p class="w3-center w3-large">Search trains between stations or check live running status</p>
+        
+        <!-- Train Search Form -->
+        <div class="w3-row-padding w3-center w3-margin-top">
+            <div class="w3-col m4">
+                <input class="w3-input w3-border" type="text" placeholder="Enter Train Number" id="trainNumber">
+            </div>
+            <div class="w3-col m4">
+                <button class="w3-button railway-blue w3-block" onclick="searchTrain()">
+                    <i class="fas fa-search"></i> Search Train
+                </button>
+            </div>
+            <div class="w3-col m4">
+                <button class="w3-button railway-red w3-block" onclick="showLiveTrains()">
+                    <i class="fas fa-bolt"></i> Live Trains
+                </button>
+            </div>
+        </div>
+        
+        <!-- Train Results -->
+        <div id="trainResults" class="w3-margin-top">
+            <!-- Train cards will be inserted here by JavaScript -->
+        </div>
+        
+        <!-- Sample Train Cards (Initially hidden) -->
+        <div class="w3-row-padding w3-margin-top" id="sampleTrains" style="display:none;">
+            <div class="w3-col m4">
+                <div class="w3-card-4 train-card w3-margin-bottom">
+                    <div class="w3-container railway-blue">
+                        <h4><i class="fas fa-train"></i> Rajdhani Express</h4>
+                        <p><span class="w3-tag railway-red">12309</span> Delhi → Howrah</p>
+                    </div>
+                    <div class="w3-container w3-padding">
+                        <p><i class="far fa-clock"></i> Departure: 16:55 | Arrival: 10:30 (+1)</p>
+                        <p><i class="fas fa-road"></i> Distance: 1,445 km | Duration: 17h 35m</p>
+                        <p><i class="fas fa-chair"></i> Available Classes: 1A, 2A, 3A</p>
+                        <p class="status-ontime"><i class="fas fa-check-circle"></i> Running On Time</p>
+                        <button class="w3-button railway-red w3-block w3-margin-top">View Schedule</button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="w3-col m4">
+                <div class="w3-card-4 train-card w3-margin-bottom">
+                    <div class="w3-container railway-red">
+                        <h4><i class="fas fa-train"></i> Shatabdi Express</h4>
+                        <p><span class="w3-tag railway-blue">12001</span> New Delhi → Bhopal</p>
+                    </div>
+                    <div class="w3-container w3-padding">
+                        <p><i class="far fa-clock"></i> Departure: 06:00 | Arrival: 13:05</p>
+                        <p><i class="fas fa-road"></i> Distance: 708 km | Duration: 7h 05m</p>
+                        <p><i class="fas fa-chair"></i> Available Classes: CC, EC</p>
+                        <p class="status-delayed"><i class="fas fa-exclamation-triangle"></i> Delayed by 25 min</p>
+                        <button class="w3-button railway-red w3-block w3-margin-top">View Schedule</button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="w3-col m4">
+                <div class="w3-card-4 train-card w3-margin-bottom">
+                    <div class="w3-container railway-green">
+                        <h4><i class="fas fa-train"></i> Duronto Express</h4>
+                        <p><span class="w3-tag railway-blue">12213</span> Mumbai → Delhi</p>
+                    </div>
+                    <div class="w3-container w3-padding">
+                        <p><i class="far fa-clock"></i> Departure: 23:00 | Arrival: 16:30 (+1)</p>
+                        <p><i class="fas fa-road"></i> Distance: 1,384 km | Duration: 17h 30m</p>
+                        <p><i class="fas fa-chair"></i> Available Classes: 1A, 2A, 3A</p>
+                        <p class="status-ontime"><i class="fas fa-check-circle"></i> Running On Time</p>
+                        <button class="w3-button railway-red w3-block w3-margin-top">View Schedule</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Services Section -->
+    <div class="w3-container w3-padding-64 w3-light-grey" id="services">
+        <h2 class="w3-center"><i class="fas fa-concierge-bell"></i> Our Services</h2>
+        <p class="w3-center w3-large">Comprehensive railway services for your convenience</p>
+        
+        <div class="w3-row-padding w3-center w3-margin-top">
+            <div class="w3-col m3">
+                <div class="w3-card w3-padding-32 w3-white card-hover">
+                    <i class="fas fa-utensils train-icon w3-margin-bottom"></i>
+                    <h4>E-Catering</h4>
+                    <p>Order food to your seat from premium restaurants</p>
+                </div>
+            </div>
+            <div class="w3-col m3">
+                <div class="w3-card w3-padding-32 w3-white card-hover">
+                    <i class="fas fa-bed train-icon w3-margin-bottom"></i>
+                    <h4>Retiring Rooms</h4>
+                    <p>Book comfortable rooms at railway stations</p>
+                </div>
+            </div>
+            <div class="w3-col m3">
+                <div class="w3-card w3-padding-32 w3-white card-hover">
+                    <i class="fas fa-wifi train-icon w3-margin-bottom"></i>
+                    <h4>RailWire WiFi</h4>
+                    <p>Free high-speed WiFi at major stations</p>
+                </div>
+            </div>
+            <div class="w3-col m3">
+                <div class="w3-card w3-padding-32 w3-white card-hover">
+                    <i class="fas fa-wheelchair train-icon w3-margin-bottom"></i>
+                    <h4>Disabled Services</h4>
+                    <p>Special facilities for differently-abled passengers</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="w3-row-padding w3-center w3-margin-top">
+            <div class="w3-col m3">
+                <div class="w3-card w3-padding-32 w3-white card-hover">
+                    <i class="fas fa-suitcase train-icon w3-margin-bottom"></i>
+                    <h4>Luggage Services</h4>
+                    <p>Door-to-door parcel and luggage booking</p>
+                </div>
+            </div>
+            <div class="w3-col m3">
+                <div class="w3-card w3-padding-32 w3-white card-hover">
+                    <i class="fas fa-train train-icon w3-margin-bottom"></i>
+                    <h4>Tourist Trains</h4>
+                    <p>Luxury trains for heritage and cultural tours</p>
+                </div>
+            </div>
+            <div class="w3-col m3">
+                <div class="w3-card w3-padding-32 w3-white card-hover">
+                    <i class="fas fa-gift train-icon w3-margin-bottom"></i>
+                    <h4>Gift Parcels</h4>
+                    <p>Send gifts to loved ones via railway parcels</p>
+                </div>
+            </div>
+            <div class="w3-col m3">
+                <div class="w3-card w3-padding-32 w3-white card-hover">
+                    <i class="fas fa-id-card train-icon w3-margin-bottom"></i>
+                    <h4>Railway Passes</h4>
+                    <p>Tourist and seasonal passes for unlimited travel</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- About Indian Railways -->
+    <div class="w3-container w3-padding-64" id="about">
+        <div class="w3-row-padding">
+            <div class="w3-col m6">
+                <h2><i class="fas fa-info-circle"></i> About Indian Railways</h2>
+                <p>Indian Railways is one of the world's largest railway networks comprising 115,000 km of track over a route of 68,000 km and 7,300 stations. Operating in 29 states and 7 union territories, it runs more than 13,000 passenger trains daily.</p>
+                
+                <h4 class="w3-margin-top">Our Achievements</h4>
+                <ul class="w3-ul">
+                    <li><i class="fas fa-check-circle railway-green"></i> World's 4th largest railway network</li>
+                    <li><i class="fas fa-check-circle railway-green"></i> Carries over 8 billion passengers annually</li>
+                    <li><i class="fas fa-check-circle railway-green"></i> Transports 1.2 billion tonnes of freight yearly</li>
+                    <li><i class="fas fa-check-circle railway-green"></i> Employs over 1.3 million people</li>
+                    <li><i class="fas fa-check-circle railway-green"></i> 100% electrification target by 2030</li>
+                </ul>
+            </div>
+            
+            <div class="w3-col m6">
+                <div class="w3-card-4">
+                    <div class="w3-container railway-blue w3-text-white">
+                        <h4><i class="fas fa-chart-line"></i> Railway Statistics</h4>
+                    </div>
+                    <div class="w3-container w3-padding-32">
+                        <div class="w3-row w3-margin-bottom">
+                            <div class="w3-col s6">
+                                <div class="w3-center">
+                                    <h2 class="railway-red">68,000+</h2>
+                                    <p>Route Kilometers</p>
+                                </div>
+                            </div>
+                            <div class="w3-col s6">
+                                <div class="w3-center">
+                                    <h2 class="railway-red">7,300+</h2>
+                                    <p>Stations</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="w3-row w3-margin-bottom">
+                            <div class="w3-col s6">
+                                <div class="w3-center">
+                                    <h2 class="railway-red">13,000+</h2>
+                                    <p>Daily Passenger Trains</p>
+                                </div>
+                            </div>
+                            <div class="w3-col s6">
+                                <div class="w3-center">
+                                    <h2 class="railway-red">8B+</h2>
+                                    <p>Annual Passengers</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="w3-card w3-margin-top">
+                    <div class="w3-container railway-green w3-text-white">
+                        <h4><i class="fas fa-bullhorn"></i> Recent Initiatives</h4>
+                    </div>
+                    <div class="w3-container w3-padding">
+                        <p><i class="fas fa-bolt railway-red"></i> <strong>Vande Bharat Express:</strong> Semi-high speed trains</p>
+                        <p><i class="fas fa-bolt railway-red"></i> <strong>Rail Neer:</strong> Packaged drinking water</p>
+                        <p><i class="fas fa-bolt railway-red"></i> <strong>Project Utkrisht:</strong> Upgrade of 600 mail/express trains</p>
+                        <p><i class="fas fa-bolt railway-red"></i> <strong>Project Swarn:</strong> Revamp of Rajdhani, Shatabdi & Duronto</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="w3-container railway-blue w3-padding-64 w3-text-white">
+        <div class="w3-row-padding">
+            <div class="w3-col m3">
+                <h5>INDIAN RAILWAYS</h5>
+                <p>Ministry of Railways, Government of India</p>
+                <p>Rail Bhavan, Raisina Road, New Delhi 110001</p>
+            </div>
+            <div class="w3-col m3">
+                <h5>Quick Links</h5>
+                <div class="footer-links">
+                    <p><a href="#home">Home</a></p>
+                    <p><a href="#book">Book Tickets</a></p>
+                    <p><a href="#pnr">PNR Status</a></p>
+                    <p><a href="#trains">Train Schedule</a></p>
+                </div>
+            </div>
+            <div class="w3-col m3">
+                <h5>Important Links</h5>
+                <div class="footer-links">
+                    <p><a href="#">IRCTC Official Website</a></p>
+                    <p><a href="#">Railway Recruitment Board</a></p>
+                    <p><a href="#">National Train Enquiry System</a></p>
+                    <p><a href="#">Freight Business</a></p>
+                </div>
+            </div>
+            <div class="w3-col m3">
+                <h5>Contact Us</h5>
+                <p><i class="fas fa-phone"></i> 139 (Railway Enquiry)</p>
+                <p><i class="fas fa-envelope"></i> care@irctc.co.in</p>
+                <p><i class="fas fa-globe"></i> www.indianrailways.gov.in</p>
+                <div class="w3-margin-top">
+                    <i class="fab fa-facebook w3-hover-opacity w3-large w3-margin-right"></i>
+                    <i class="fab fa-twitter w3-hover-opacity w3-large w3-margin-right"></i>
+                    <i class="fab fa-youtube w3-hover-opacity w3-large w3-margin-right"></i>
+                    <i class="fab fa-instagram w3-hover-opacity w3-large"></i>
+                </div>
+            </div>
+        </div>
+        
+        <div class="w3-center w3-padding-32">
+            <p>© 2023 Indian Railways. All Rights Reserved.</p>
+            <p>This is a demonstration website for educational purposes only.</p>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        // Mobile menu toggle
+        function toggleMobileMenu() {
+            const mobileNav = document.getElementById("mobileNav");
+            if (mobileNav.className.indexOf("w3-show") == -1) {
+                mobileNav.className += " w3-show";
+            } else {
+                mobileNav.className = mobileNav.className.replace(" w3-show", "");
+            }
+        }
+        
+        // Close mobile menu when clicking outside
+        window.onclick = function(event) {
+            if (!event.target.matches('.w3-bar-item')) {
+                const mobileNav = document.getElementById("mobileNav");
+                if (mobileNav.className.indexOf("w3-show") != -1) {
+                    mobileNav.className = mobileNav.className.replace(" w3-show", "");
+                }
+            }
+        }
+        
+        // Booking form submission
+        document.getElementById("bookingForm").onsubmit = function(e) {
+            e.preventDefault();
+            
+            const fromStation = document.getElementById("fromStation").value;
+            const toStation = document.getElementById("toStation").value;
+            const journeyDate = document.getElementById("journeyDate").value;
+            const travelClass = document.getElementById("travelClass").value;
+            const passengers = document.getElementById("passengers").value;
+            
+            if (!fromStation || !toStation || !journeyDate || !travelClass) {
+                alert("Please fill all required fields!");
+                return false;
+            }
+            
+            // Show loading
+            const searchBtn = document.querySelector('#bookingForm button[type="submit"]');
+            const originalText = searchBtn.innerHTML;
+            searchBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Searching...';
+            searchBtn.disabled = true;
+            
+            // Simulate search delay
+            setTimeout(() => {
+                // Show results
+                document.getElementById("trainResults").innerHTML = `
+                    <div class="w3-card w3-padding-large w3-center">
+                        <h3 class="railway-blue">Trains Found from ${fromStation} to ${toStation}</h3>
+                        <p>Journey Date: ${journeyDate} | Class: ${travelClass} | Passengers: ${passengers}</p>
+                        <div class="w3-row-padding w3-margin-top">
+                            ${generateTrainCards()}
+                        </div>
+                        <button class="w3-button railway-red w3-margin-top" onclick="resetSearch()">
+                            <i class="fas fa-redo"></i> New Search
+                        </button>
+                    </div>
+                `;
+                
+                // Reset button
+                searchBtn.innerHTML = originalText;
+                searchBtn.disabled = false;
+                
+                // Scroll to results
+                document.getElementById("trainResults").scrollIntoView({behavior: 'smooth'});
+            }, 1500);
+            
+            return false;
+        }
+        
+        // Generate sample train cards
+        function generateTrainCards() {
+            return `
+                <div class="w3-col m4">
+                    <div class="w3-card-4 w3-padding">
+                        <div class="w3-container railway-blue w3-text-white">
+                            <h4>Rajdhani Express</h4>
+                            <p><span class="w3-tag railway-red">12309</span> | Depart: 16:55</p>
+                        </div>
+                        <div class="w3-container">
+                            <p><i class="far fa-clock"></i> Duration: 17h 35m</p>
+                            <p><i class="fas fa-chair"></i> Available: <span class="seat-available">12</span> <span class="seat-waiting">5</span></p>
+                            <p><i class="fas fa-rupee-sign"></i> Fare: ₹2,850</p>
+                            <button class="w3-button railway-red w3-block w3-margin-top">Book Now</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="w3-col m4">
+                    <div class="w3-card-4 w3-padding">
+                        <div class="w3-container railway-red w3-text-white">
+                            <h4>Shatabdi Express</h4>
+                            <p><span class="w3-tag railway-blue">12011</span> | Depart: 06:00</p>
+                        </div>
+                        <div class="w3-container">
+                            <p><i class="far fa-clock"></i> Duration: 7h 05m</p>
+                            <p><i class="fas fa-chair"></i> Available: <span class="seat-available">8</span> <span class="seat-booked">0</span></p>
+                            <p><i class="fas fa-rupee-sign"></i> Fare: ₹1,450</p>
+                            <button class="w3-button railway-red w3-block w3-margin-top">Book Now</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="w3-col m4">
+                    <div class="w3-card-4 w3-padding">
+                        <div class="w3-container railway-green w3-text-white">
+                            <h4>Duronto Express</h4>
+                            <p><span class="w3-tag railway-blue">12213</span> | Depart: 23:00</p>
+                        </div>
+                        <div class="w3-container">
+                            <p><i class="far fa-clock"></i> Duration: 17h 30m</p>
+                            <p><i class="fas fa-chair"></i> Available: <span class="seat-available">15</span> <span class="seat-waiting">3</span></p>
+                            <p><i class="fas fa-rupee-sign"></i> Fare: ₹2,650</p>
+                            <button class="w3-button railway-red w3-block w3-margin-top">Book Now</button>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+        
+        // Reset search
+        function resetSearch() {
+            document.getElementById("bookingForm").reset();
+            document.getElementById("trainResults").innerHTML = "";
+            document.getElementById("fromStation").focus();
+        }
+        
+        // Check PNR Status
+        function checkPNR() {
+            const pnrInput = document.getElementById("pnrInput").value;
+            const pnrResults = document.getElementById("pnrResults");
+            
+            if (!pnrInput || pnrInput.length !== 10) {
+                alert("Please enter a valid 10-digit PNR number");
+                return;
+            }
+            
+            // Show loading
+            pnrResults.innerHTML = '<p class="w3-center"><i class="fas fa-spinner fa-spin"></i> Checking PNR Status...</p>';
+            
+            // Simulate API delay
+            setTimeout(() => {
+                const pnrStatus = Math.random() > 0.3 ? "CONFIRMED" : "WAITING";
+                const coach = pnrStatus === "CONFIRMED" ? "B3" : "-";
+                const seat = pnrStatus === "CONFIRMED" ? "45" : "-";
+                const berth = pnrStatus === "CONFIRMED" ? "LOWER" : "-";
+                
+                pnrResults.innerHTML = `
+                    <div class="w3-panel w3-leftbar w3-border-green w3-pale-green">
+                        <h4 class="railway-blue">PNR: ${pnrInput}</h4>
+                        <p><strong>Status:</strong> <span class="${pnrStatus === 'CONFIRMED' ? 'status-ontime' : 'status-delayed'}">${pnrStatus}</span></p>
+                        <p><strong>Train:</strong> Rajdhani Express (12309)</p>
+                        <p><strong>From:</strong> New Delhi | <strong>To:</strong> Howrah</p>
+                        <p><strong>Date:</strong> 15 Dec 2023 | <strong>Class:</strong> 3A</p>
+                        <p><strong>Coach:</strong> ${coach} | <strong>Seat:</strong> ${seat} | <strong>Berth:</strong> ${berth}</p>
+                        <p><strong>Passengers:</strong> 2 Adults</p>
+                        <p><strong>Chart Status:</strong> <span class="status-ontime">CHART PREPARED</span></p>
+                        <p><strong>Current Position:</strong> ${pnrStatus === 'CONFIRMED' ? 'WL 1' : 'WL 15'}</p>
+                    </div>
+                    <button class="w3-button railway-blue w3-block" onclick="checkAnotherPNR()">
+                        <i class="fas fa-redo"></i> Check Another PNR
+                    </button>
+                `;
+            }, 1500);
+        }
+        
+        // Check another PNR
+        function checkAnotherPNR() {
+            document.getElementById("pnrInput").value = "";
+            document.getElementById("pnrResults").innerHTML = '<p class="w3-center">Enter PNR number to see status</p>';
+            document.getElementById("pnrInput").focus();
+        }
+        
+        // Search train by number
+        function searchTrain() {
+            const trainNumber = document.getElementById("trainNumber").value;
+            const trainResults = document.getElementById("trainResults");
+            
+            if (!trainNumber) {
+                alert("Please enter a train number");
+                return;
+            }
+            
+            // Show loading
+            trainResults.innerHTML = '<div class="w3-card w3-padding-large w3-center"><h3><i class="fas fa-spinner fa-spin"></i> Searching Train ' + trainNumber + '...</h3></div>';
+            
+            // Simulate API delay
+            setTimeout(() => {
+                const trainName = getTrainName(trainNumber);
+                const status = Math.random() > 0.5 ? "ON TIME" : "DELAYED";
+                const delay = status === "DELAYED" ? Math.floor(Math.random() * 60) + 10 : 0;
+                
+                trainResults.innerHTML = `
+                    <div class="w3-card w3-padding-large">
+                        <div class="w3-row">
+                            <div class="w3-col m8">
+                                <h3 class="railway-blue">${trainName}</h3>
+                                <p><span class="w3-tag railway-red">${trainNumber}</span> | ${getTrainType(trainNumber)}</p>
+                                <p><i class="fas fa-map-marker-alt"></i> Route: ${getTrainRoute(trainNumber)}</p>
+                                <p><i class="far fa-clock"></i> Running Days: ${getRunningDays(trainNumber)}</p>
+                                <p><i class="fas fa-road"></i> Distance: ${getTrainDistance(trainNumber)} km | Duration: ${getTrainDuration(trainNumber)}</p>
+                                <p><i class="fas fa-chair"></i> Available Classes: ${getTrainClasses(trainNumber)}</p>
+                                <p class="${status === 'ON TIME' ? 'status-ontime' : 'status-delayed'}">
+                                    <i class="${status === 'ON TIME' ? 'fas fa-check-circle' : 'fas fa-exclamation-triangle'}"></i> 
+                                    Current Status: ${status} ${status === 'DELAYED' ? 'by ' + delay + ' minutes' : ''}
+                                </p>
+                            </div>
+                            <div class="w3-col m4">
+                                <div class="w3-card w3-padding">
+                                    <h4 class="railway-blue">Live Status</h4>
+                                    <p><strong>Last Location:</strong> ${getLastLocation()}</p>
+                                    <p><strong>Next Station:</strong> ${getNextStation()}</p>
+                                    <p><strong>Expected Arrival:</strong> ${getExpectedArrival()}</p>
+                                    <p><strong>Platform:</strong> <span class="platform-indicator platform-${Math.floor(Math.random() * 4) + 1}"></span> ${Math.floor(Math.random() * 8) + 1}</p>
+                                    <button class="w3-button railway-red w3-block w3-margin-top" onclick="viewDetailedSchedule()">
+                                        <i class="fas fa-list-alt"></i> View Full Schedule
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="w3-container w3-margin-top">
+                            <h4 class="railway-blue">Recent Stations</h4>
+                            <div class="train-route">
+                                ${generateStationList()}
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }, 1500);
+        }
+        
+        // Show live trains
+        function showLiveTrains() {
+            const trainResults = document.getElementById("trainResults");
+            const sampleTrains = document.getElementById("sampleTrains");
+            
+            // Hide sample trains first
+            sampleTrains.style.display = "none";
+            
+            // Show loading
+            trainResults.innerHTML = '<div class="w3-card w3-padding-large w3-center"><h3><i class="fas fa-spinner fa-spin"></i> Loading Live Train Status...</h3></div>';
+            
+            // Simulate API delay
+            setTimeout(() => {
+                trainResults.innerHTML = "";
+                sampleTrains.style.display = "block";
+                sampleTrains.scrollIntoView({behavior: 'smooth'});
+            }, 1000);
+        }
+        
+        // Helper functions for train data
+        function getTrainName(number) {
+            const names = {
+                "12309": "Rajdhani Express",
+                "12001": "Shatabdi Express",
+                "12213": "Duronto Express",
+                "12627": "Karnataka Express",
+                "12951": "Mumbai Rajdhani",
+                "22436": "Vande Bharat Express"
+            };
+            return names[number] || "Superfast Express";
+        }
+        
+        function getTrainType(number) {
+            if (number.startsWith("1")) return "Superfast";
+            if (number.startsWith("2")) return "Rajdhani/Shatabdi";
+            if (number.startsWith("12")) return "Express";
+            return "Mail/Express";
+        }
+        
+        function getTrainRoute(number) {
+            const routes = {
+                "12309": "New Delhi → Howrah",
+                "12001": "New Delhi → Bhopal",
+                "12213": "Mumbai → Delhi",
+                "12627": "New Delhi → Bangalore",
+                "12951": "Mumbai → New Delhi",
+                "22436": "New Delhi → Varanasi"
+            };
+            return routes[number] || "Major City → Major City";
+        }
+        
+        function getRunningDays(number) {
+            return "Daily";
+        }
+        
+        function getTrainDistance(number) {
+            const distances = {
+                "12309": "1445",
+                "12001": "708",
+                "12213": "1384",
+                "12627": "2370",
+                "12951": "1384",
+                "22436": "764"
+            };
+            return distances[number] || "1200";
+        }
+        
+        function getTrainDuration(number) {
+            const durations = {
+                "12309": "17h 35m",
+                "12001": "7h 05m",
+                "12213": "17h 30m",
+                "12627": "39h 00m",
+                "12951": "16h 15m",
+                "22436": "8h 00m"
+            };
+            return durations[number] || "15h 00m";
+        }
+        
+        function getTrainClasses(number) {
+            if (number.startsWith("12") || number.startsWith("12")) return "1A, 2A, 3A, SL";
+            if (number.startsWith("120")) return "CC, EC";
+            return "2A, 3A, SL";
+        }
+        
+        function getLastLocation() {
+            const locations = ["Kanpur Central", "Jhansi Junction", "Bhopal Junction", "Nagpur", "Prayagraj"];
+            return locations[Math.floor(Math.random() * locations.length)];
+        }
+        
+        function getNextStation() {
+            const stations = ["Allahabad", "Patna", "Lucknow", "Agra", "Gwalior"];
+            return stations[Math.floor(Math.random() * stations.length)];
+        }
+        
+        function getExpectedArrival() {
+            const hours = Math.floor(Math.random() * 12) + 1;
+            const minutes = Math.floor(Math.random() * 60);
+            return `${hours}:${minutes < 10 ? '0' : ''}${minutes} ${hours < 12 ? 'AM' : 'PM'}`;
+        }
+        
+        function generateStationList() {
+            const stations = [
+                {name: "New Delhi", time: "16:55", status: "Departed"},
+                {name: "Kanpur Central", time: "22:30", status: "Expected"},
+                {name: "Allahabad", time: "01:45", status: "Expected"},
+                {name: "Mughalsarai", time: "04:15", status: "Expected"},
+                {name: "Gaya", time: "07:20", status: "Expected"},
+                {name: "Howrah", time: "10:30", status: "Expected"}
+            ];
+            
+            let html = "";
+            stations.forEach(station => {
+                html += `
+                    <div class="w3-row w3-margin-bottom">
+                        <div class="w3-col s1">
+                            <i class="fas fa-map-pin station-marker"></i>
+                        </div>
+                        <div class="w3-col s8">
+                            <strong>${station.name}</strong>
+                        </div>
+                        <div class="w3-col s3">
+                            ${station.time} <span class="w3-tag w3-small ${station.status === 'Departed' ? 'railway-green' : 'railway-blue'}">${station.status}</span>
+                        </div>
+                    </div>
+                `;
+            });
+            return html;
+        }
+        
+        // View detailed schedule
+        function viewDetailedSchedule() {
+            alert("Detailed schedule feature would show complete station list with arrival/departure times, platform numbers, and halt durations.");
+        }
+        
+        // Set minimum date for booking to today
+        window.onload = function() {
+            const today = new Date().toISOString().split('T')[0];
+            document.getElementById("journeyDate").min = today;
+            
+            // Set default date to tomorrow
+            const tomorrow = new Date();
+            tomorrow.setDate(tomorrow.getDate() + 1);
+            document.getElementById("journeyDate").value = tomorrow.toISOString().split('T')[0];
+            
+            // Set focus to from station
+            document.getElementById("fromStation").focus();
+        }
+        
+        // Auto-suggest stations (simplified)
+        const stationSuggestions = ["New Delhi", "Mumbai Central", "Howrah", "Chennai Central", "Bangalore", "Secunderabad", "Ahmedabad", "Lucknow", "Patna", "Bhopal"];
+        
+        document.getElementById("fromStation").onkeyup = function() {
+            showSuggestions(this, "fromSuggestions");
+        }
+        
+        document.getElementById("toStation").onkeyup = function() {
+            showSuggestions(this, "toSuggestions");
+        }
+        
+        function showSuggestions(input, containerId) {
+            const value = input.value.toLowerCase();
+            let suggestions = stationSuggestions.filter(station => 
+                station.toLowerCase().includes(value)
+            ).slice(0, 5);
+            
+            // Remove existing suggestions
+            let existingContainer = document.getElementById(containerId);
+            if (existingContainer) {
+                existingContainer.remove();
+            }
+            
+            if (value.length < 2 || suggestions.length === 0) return;
+            
+            // Create suggestions container
+            const container = document.createElement("div");
+            container.id = containerId;
+            container.className = "w3-card w3-white w3-border";
+            container.style.position = "absolute";
+            container.style.zIndex = "10";
+            container.style.width = input.offsetWidth + "px";
+            
+            // Add suggestions
+            suggestions.forEach(station => {
+                const div = document.createElement("div");
+                div.className = "w3-padding-small w3-hover-light-grey";
+                div.textContent = station;
+                div.onclick = function() {
+                    input.value = station;
+                    container.remove();
+                };
+                container.appendChild(div);
+            });
+            
+            // Position and add to DOM
+            input.parentNode.appendChild(container);
+            container.style.top = (input.offsetTop + input.offsetHeight) + "px";
+            container.style.left = input.offsetLeft + "px";
+            
+            // Remove suggestions when clicking elsewhere
+            document.addEventListener('click', function removeSuggestions(e) {
+                if (!container.contains(e.target) && e.target !== input) {
+                    container.remove();
+                    document.removeEventListener('click', removeSuggestions);
+                }
+            });
+        }
+
+        // Disable Right Click
+document.addEventListener('contextmenu', e => e.preventDefault());
+
+// Disable Key Shortcuts
+document.onkeydown = function(e) {
+
+    // Disable F12
+    if (e.keyCode == 123) {
+        return false;
+    }
+
+    // Disable Ctrl+Shift+I
+    if (e.ctrlKey && e.shiftKey && e.keyCode == 73) {
+        return false;
+    }
+
+    // Disable Ctrl+Shift+J
+    if (e.ctrlKey && e.shiftKey && e.keyCode == 74) {
+        return false;
+    }
+
+    // Disable Ctrl+U
+    if (e.ctrlKey && e.keyCode == 85) {
+        return false;
+    }
+
+    // Disable Ctrl+S
+    if (e.ctrlKey && e.keyCode == 83) {
+        return false;
+    }
+
+    // Disable Ctrl+C
+    if (e.ctrlKey && e.keyCode == 67) {
+        return false;
+    }
+};
+    </script>
+</body>
+</html>
